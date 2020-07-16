@@ -1,0 +1,37 @@
+//MUHAMMAD TAHA HAQQANI, SECTION-501
+//Priority Encoder
+//input is 8-bit long array
+//output is 3-bit long array
+
+CHIP PriorityEncoder83 {
+	IN a[8];
+	OUT out[3], idle;
+
+	PARTS:
+	//Your code starts here
+	
+	//idle
+	Or8Way(in=a,out=v);
+	Not(in=v,out=idle);
+	
+	//out[2]
+	Or8Way(in[0..3]=a[4..7], out=out[2]);
+	
+	//out[1]
+	Or(a=a[7],b=a[6],out=w1);
+	Nor(a=a[5],b=a[4],out=w2);
+	Or(a=a[3],b=a[2],out=w3);
+	And(a=w3,b=w2,out=w4);
+	Or(a=w1,b=w4,out=out[1]);
+	
+	//out[0]
+	Nor(a=a[4],b=a[2],out=x1);
+	And(a=x1,b=a[1],out=x2);
+	Not(in=a[4],out=x3);
+	And(a=x3,b=a[3],out=x4);
+	Or(a=x2,b=x4,out=x5);
+	Or(a=x5,b=a[5],out=x6);
+	Not(in=a[6],out=nota6);
+	And(a=x6,b=nota6,out=x7);
+	Or(a=a[7],b=x7,out=out[0]);
+}

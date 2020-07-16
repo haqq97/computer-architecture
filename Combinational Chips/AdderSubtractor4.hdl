@@ -1,0 +1,20 @@
+//MUHAMMAD TAHA HAQQANI, SECTION-501 
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/AdderSubtractor4.hdl
+
+/**
+ * Computes the sum of two 4-bit numbers. If the number is negative it adds the negation of one number to the other
+ */
+
+CHIP AdderSubtractor4 {
+    IN a[4], b[4], sel;  // 4-bit input numbers
+    OUT out[4];   // 4-bit sum
+
+    PARTS:
+    // Put you code here:
+	Negation(in[0..3]=b,out[0..3]=negb);
+	Mux16(a[0..3]=b,b[0..3]=negb,sel=sel,out[0..3]=selb);
+	Add4(a=a,b=selb,carryIn=false,carry=false,out=out);
+}

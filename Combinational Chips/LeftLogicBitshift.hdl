@@ -1,0 +1,89 @@
+//MUHAMMAD TAHA HAQQANI, SECTION-501 
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/LeftLogicBitshift.hdl
+
+/**
+ * Shift x left y bits, new bits are filled in with 0, you may not use any DFF or clocked chip in this implementation
+ * You may assume the maximum shift is 8-bit
+ */
+
+CHIP LeftLogicBitshift {
+    IN x[16], y[16];
+    OUT out[16];
+
+    PARTS:
+   // Put you code here:
+	//shift 0 = N << 0 = N x 1
+	Mux(a=x[0], b=false, sel=y[0], out=w0);
+	Mux(a=x[1], b=x[0], sel=y[0], out=w1);
+	Mux(a=x[2], b=x[1], sel=y[0], out=w2);
+	Mux(a=x[3], b=x[2], sel=y[0], out=w3);
+	Mux(a=x[4], b=x[3], sel=y[0], out=w4);
+	Mux(a=x[5], b=x[4], sel=y[0], out=w5);
+	Mux(a=x[6], b=x[5], sel=y[0], out=w6);
+	Mux(a=x[7], b=x[6], sel=y[0], out=w7);
+	Mux(a=x[8], b=x[7], sel=y[0], out=w8);
+	Mux(a=x[9], b=x[8], sel=y[0], out=w9);
+	Mux(a=x[10], b=x[9], sel=y[0], out=w10);
+	Mux(a=x[11], b=x[10], sel=y[0], out=w11);
+	Mux(a=x[12], b=x[11], sel=y[0], out=w12);
+	Mux(a=x[13], b=x[12], sel=y[0], out=w13);
+	Mux(a=x[14], b=x[13], sel=y[0], out=w14);
+	Mux(a=x[15], b=x[14], sel=y[0], out=w15);
+	
+	//shift 1 = N << 1 = N x 2
+	Mux(a=w0, b=false, sel=y[1], out=z0);
+	Mux(a=w1, b=false, sel=y[1], out=z1);
+	Mux(a=w2, b=w0, sel=y[1], out=z2);
+	Mux(a=w3, b=w1, sel=y[1], out=z3);
+	Mux(a=w4, b=w2, sel=y[1], out=z4);
+	Mux(a=w5, b=w3, sel=y[1], out=z5);
+	Mux(a=w6, b=w4, sel=y[1], out=z6);
+	Mux(a=w7, b=w5, sel=y[1], out=z7);
+	Mux(a=w8, b=w6, sel=y[1], out=z8);
+	Mux(a=w9, b=w7, sel=y[1], out=z9);
+	Mux(a=w10, b=w8, sel=y[1], out=z10);
+	Mux(a=w11, b=w9, sel=y[1], out=z11);
+	Mux(a=w12, b=w10, sel=y[1], out=z12);
+	Mux(a=w13, b=w11, sel=y[1], out=z13);
+	Mux(a=w14, b=w12, sel=y[1], out=z14);
+	Mux(a=w15, b=w13, sel=y[1], out=z15);
+	
+	//shift 2 = N << 2 = N x 4
+	Mux(a=z0, b=false, sel=y[2], out=a0);
+	Mux(a=z1, b=false, sel=y[2], out=a1);
+	Mux(a=z2, b=false, sel=y[2], out=a2);
+	Mux(a=z3, b=false, sel=y[2], out=a3);
+	Mux(a=z4, b=z0, sel=y[2], out=a4);
+	Mux(a=z5, b=z1, sel=y[2], out=a5);
+	Mux(a=z6, b=z2, sel=y[2], out=a6);
+	Mux(a=z7, b=z3, sel=y[2], out=a7);
+	Mux(a=z8, b=z4, sel=y[2], out=a8);
+	Mux(a=z9, b=z5, sel=y[2], out=a9);
+	Mux(a=z10, b=z6, sel=y[2], out=a10);
+	Mux(a=z11, b=z7, sel=y[2], out=a11);
+	Mux(a=z12, b=z8, sel=y[2], out=a12);
+	Mux(a=z13, b=z9, sel=y[2], out=a13);
+	Mux(a=z14, b=z10, sel=y[2], out=a14);
+	Mux(a=z15, b=z11, sel=y[2], out=a15);
+	
+	//shift 3 = N << 3 = N x 8
+	Mux(a=a0, b=false, sel=y[3], out=out[0]);
+	Mux(a=a1, b=false, sel=y[3], out=out[1]);
+	Mux(a=a2, b=false, sel=y[3], out=out[2]);
+	Mux(a=a3, b=false, sel=y[3], out=out[3]);
+	Mux(a=a4, b=false, sel=y[3], out=out[4]);
+	Mux(a=a5, b=false, sel=y[3], out=out[5]);
+	Mux(a=a6, b=false, sel=y[3], out=out[6]);
+	Mux(a=a7, b=false, sel=y[3], out=out[7]);
+	Mux(a=a8, b=a0, sel=y[3], out=out[8]);
+	Mux(a=a9, b=a1, sel=y[3], out=out[9]);
+	Mux(a=a10, b=a2, sel=y[3], out=out[10]);
+	Mux(a=a11, b=a3, sel=y[3], out=out[11]);
+	Mux(a=a12, b=a4, sel=y[3], out=out[12]);
+	Mux(a=a13, b=a5, sel=y[3], out=out[13]);
+	Mux(a=a14, b=a6, sel=y[3], out=out[14]);
+	Mux(a=a15, b=a7, sel=y[3], out=out[15]);
+}

@@ -1,0 +1,22 @@
+//MUHAMMAD TAHA HAQQANI, SECTION-501 
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/Adder16.hdl
+
+/**
+ * Adds two 16-bit values. Need to use HA and FA as there is no input carry provided
+ * The most significant carry bit is ignored.
+ */
+
+CHIP Add16 {
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+   // Put you code here:
+   Add6(a=a[0..5],b=b[0..5],carryIn=false,out=out[0..5],carry=c1);
+   Add6(a=a[6..11],b=b[6..11],carryIn=c1,out=out[6..11],carry=c2);
+   Add4(a=a[12..15],b=b[12..15],carryIn=c2,out=out[12..15],carry=false);
+
+}
