@@ -1,0 +1,17 @@
+//MUHAMMAD TAHA HAQQANI, SECTION: 501
+//Fibonacci Number Generator
+//Given two initial numbers f0 and f1, the sequence will be generated
+
+CHIP Fibonacci {
+	IN f0[16], enable1, msel, enable2, enable3, f1[16];
+	OUT out[16];
+
+	PARTS:
+	//Put your code here
+	Mux16(a=f0,b=r3o,sel=msel,out=r1i);
+	Mux16(a=f1,b=r1o,sel=msel,out=r2i);
+	Register(in=r1i,load=enable1,out=r1o);
+	Register(in=r2i,load=enable2,out=r2o);
+	Add16(a=r1o,b=r2o,out=r3i);
+	Register(in=r3i,load=enable3,out=r3o, out=out);
+}
